@@ -1,0 +1,32 @@
+@charset "utf-8";
+/* CSS Document */
+
+.th_bg_lif {
+	background-color: #d5d5d5;
+	background-repeat: no-repeat;
+	background-position: left top;
+	border-bottom-right-radius: 1px;
+	border-bottom-left-radius: 1px;	
+	border-radius: 4px;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	-webkit-border-bottom-right-radius: 1px;
+	-webkit-border-bottom-left-radius: 1px;
+	-moz-border-radius-bottomright: 1px;
+	-moz-border-radius-bottomleft: 1px;
+}
+.th_bg_ret {
+	width: 180px;
+	background-color: #d5d5d5;
+	background-repeat: no-repeat;
+	background-position: right top;
+	border-radius: 4px;
+	border-bottom-right-radius: 1px;
+	border-bottom-left-radius: 1px;	
+	-webkit-border-radius: 4px;
+	-webkit-border-bottom-right-radius: 1px;
+	-webkit-border-bottom-left-radius: 1px;
+	-moz-border-radius: 4px;
+	-moz-border-radius-bottomright: 1px;
+	-moz-border-radius-bottomleft: 1px;
+}

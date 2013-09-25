@@ -1,0 +1,352 @@
+@charset "utf-8";
+/* CSS Document */
+.yellow_box {
+	width: 930px;
+	margin-top: 0px;
+	margin-bottom: 20px;
+	margin-left: 30px;
+	border: 6px solid #ffd000;
+	-moz-border-radius: 12px;
+	-webkit-border-radius: 12px;
+	border-radius: 12px;
+}
+.yellow_box_list {
+	width: 930px;
+	font-size: 12px;
+	color: #333333;
+}
+.yellow_box_list span {
+	color: #666666;
+	font-size: 12px;
+}
+.yellow_box_list tr th {
+	background-color: #D4D0D1;
+}
+
+.servername {
+	color: #424242;
+	font-size: 12px;
+	font-weight: none;
+	text-align: left;
+}
+.serverip {
+	color: #a0a0a0;
+	font-size: 22px;
+	text-decoration: none !important;
+}
+.font {
+	display: block;
+	background: url(../img/report_icon_2.png) right;
+	background-repeat: no-repeat;
+	text-align: right;
+	padding-right: 24px;
+	font-size: 12px;
+	font-weight: bold;
+	color: #424242;
+}
+.listboxA {
+	background-color: #ffff99;
+}
+.listboxB {
+	background-color: #e7f4fc;
+}
+.Resource_menu {
+	width: 900px;
+	margin: 0px auto;
+	text-align: right;
+}
+.Resource_menu span {
+	font-size: 14px;
+	color: #424242;
+}
+/*.button {
+	color: #ffffff;
+	margin: 5px 4px;
+	border: 0px #ffd000;
+	padding:0px;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	border-radius: 10px;
+}
+.button:hover {
+	background: #333333;
+	color: #cccccc;
+}*/
+.date {
+	background-color: #ff6600;
+	padding-left: 10px;
+	padding-right: 10px;
+	padding-top: 3px;
+	padding-bottom: 3px;
+}
+.name {
+	background-color: #ffff00;
+	color: #ff6600;
+	padding-left: 10px;
+	padding-right: 10px;
+	padding-top: 3px;
+	padding-bottom: 3px;
+}
+.size {
+	background-color: #009900;
+	padding-left: 10px;
+	padding-right: 10px;
+	padding-top: 3px;
+	padding-bottom: 3px;
+}
+.active_red {
+	background-color: #990000;
+	padding-left: 10px;
+	padding-right: 10px;
+	padding-top: 3px;
+	padding-bottom: 3px;
+}
+.active_green {
+	background-color: #003300;
+	padding-left: 10px;
+	padding-right: 10px;
+	padding-top: 3px;
+	padding-bottom: 3px;
+}
+.th_bg_lif {
+	padding-top: 8px;
+	padding-bottom: 8px;
+	color: #727272;
+	font-size: 11px;
+}
+.th_bg_lif th {
+	color: #727272;
+}
+.service-status {
+	padding-top: 8px;
+	padding-bottom: 8px;
+	color: #277db1;
+	font-size: 12px;
+	font-weight: bold;
+	text-decoration: none !important;
+}
+.ng-bindingid {
+	padding-top: 8px;
+	padding-bottom: 8px;
+	color: #1a689f;
+	font-size: 11px;
+	text-decoration: none !important;
+}
+.ng-binding {
+	padding-top: 8px;
+	padding-bottom: 8px;
+	color: #2d9be0;
+	font-size: 16px;
+	font-style: italic;
+	text-decoration: none !important;
+	font-family: Century Gothic, Verdana, Geneva, sans-serif;
+}
+.ng-type {
+	padding-top: 8px;
+	padding-bottom: 8px;
+	padding-left: 6px;
+	color: #175e91;
+	font-size: 11px;
+	text-align: left;
+}
+
+/*****************************************/
+.date-td{text-align: left;position: relative;}
+.display-price{margin-left: 1em;color: #333;font-family: 'Frutiger Neue W02 Bd',Arial,sans-serif;}
+div.name-warn{display: inline-block;min-width: 240px;margin: 0;}
+
+div.chart-config{text-align: left;padding-left: 4em;}
+.chart-config button.btn[disabled]{background-image: none;background-color: #ECE0D6; color: #AB9F95;}
+.chart-config{position: relative;}
+.chart-config ul{max-width: 326px;max-height: 338px;font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;;}
+.chart-config ul li{line-height: 20px;}
+.chart-config ul .btn{height: 30px;}
+
+.chart-config ul table{margin-top: 0;width: 322px;
+    background-color: rgba(0, 0, 0, 0);
+    border-collapse: collapse;
+    border-spacing: 0;
+    max-width: 100%;
+}
+.chart-config ul table tr{display: inline-block;}
+.chart-config ul table thead tr,.chart-config ul table tr th {
+    background-color: #D9EDF7 !important;
+}
+.chart-config ul table tr td{width: 44.5px;height: 30px;display: inline-block;vertical-align: middle;padding: 1px;}
+.chart-config ul table tr td button{height: 20px;}
+.chart-config ul table tbody tr{height: 32px;display: inline-block;}
+.chart-config ul table thead tr th{border: none;width: 47px;height: 30px;color: #333;}
+
+.text-center {
+  text-align: center;
+}
+.chart-config .btn {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background-color: #F5F5F5;
+    background-image: linear-gradient(to bottom, #FFFFFF, #E6E6E6);
+    background-repeat: repeat-x;
+    border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) #B3B3B3;
+    border-image: none;
+    border-radius: 4px 4px 4px 4px;
+    border-style: solid;
+    border-width: 1px;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.2) inset, 0 1px 2px rgba(0, 0, 0, 0.05);
+    color: #333333;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 14px;
+    line-height: 20px;
+    margin: 0;
+    padding: 4px 12px;
+    text-align: center;
+    text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
+    vertical-align: middle;
+}
+.chart-config .control-label{width: 38%;margin: 6px;text-align: left;}
+#chartType,#productType{width: 200px;}
+.chart-config input.date-end{margin-left: 21px;}
+.date-calendar{
+	width: 158px;
+	border-radius: 4px 4px 4px 4px;
+    color: #555555;
+    display: inline-block;
+    font-size: 14px;
+    height: 20px;
+    line-height: 20px;
+    margin-bottom: 10px;
+    padding: 4px 6px;
+    vertical-align: middle;
+    padding-left: 32px;
+    background: url("../img/Calendar-icon1.png") no-repeat scroll 0 0 / 26px 26px transparent;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 1000;
+  display: none;
+  float: left;
+  min-width: 160px;
+  padding: 5px 0;
+  margin: 2px 0 0;
+  list-style: none;
+  background-color: #ffffff;
+  border: 1px solid #ccc;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  *border-right-width: 2px;
+  *border-bottom-width: 2px;
+  -webkit-border-radius: 6px;
+     -moz-border-radius: 6px;
+          border-radius: 6px;
+  -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+     -moz-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+          box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  -webkit-background-clip: padding-box;
+     -moz-background-clip: padding;
+          background-clip: padding-box;
+}
+
+.dropdown-menu .divider {
+    background-color: #E5E5E5;
+    border-bottom: 1px solid #FFFFFF;
+    height: 1px;
+    margin: 3px 1px;
+    margin-top: 8px;
+    overflow: hidden;
+}
+
+.chart-config ul .btn-block {
+    -moz-box-sizing: border-box;
+    display: block;
+    padding-left: 0;
+    padding-right: 0;
+    width: 236px;
+}
+
+.chart-config ul .pull-left {
+    float: left;
+    width: 42px;
+}
+.chart-config ul .pull-right {
+    float: right;
+    width: 42px;
+}
+
+[class^="icon-"] {
+    cursor: pointer;
+}
+[class^="icon-"], [class*=" icon-"] {
+    background-image: url("../img/glyphicons-halflings.png");
+    background-position: 14px 14px;
+    background-repeat: no-repeat;
+    display: inline-block;
+    height: 14px;
+    line-height: 14px;
+    margin-top: 1px;
+    vertical-align: text-top;
+    width: 14px;
+}
+.icon-chevron-left {
+    background-position: -432px -72px;
+}
+.icon-chevron-right {
+    background-position: -456px -72px;
+}
+.chart-config ul .btn-info {
+	width: 63px;
+    background-color: #49AFCD;
+    background-image: linear-gradient(to bottom, #5BC0DE, #2F96B4);
+    background-repeat: repeat-x;
+    border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+    color: #FFFFFF;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+}
+
+.chart-config ul .btn-inverse {
+	width: 63px;
+    background-color: #363636;
+    background-image: linear-gradient(to bottom, #444444, #222222);
+    background-repeat: repeat-x;
+    border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+    color: #FFFFFF;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+}
+
+.chart-config ul .btn-danger {
+	width: 63px;
+    background-color: #DA4F49;
+    background-image: linear-gradient(to bottom, #EE5F5B, #BD362F);
+    background-repeat: repeat-x;
+    border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+    color: #FFFFFF;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+}
+.chart-config ul .btn-group {
+	float: left;
+    display: inline-block;
+    font-size: 0;
+    position: relative;
+    vertical-align: middle;
+    white-space: nowrap;
+}
+.chart-config ul .btn-small {
+    border-radius: 3px 3px 3px 3px;
+    font-size: 11.9px;
+    padding: 2px 7px;
+}
+.chart-config ul .btn-success {
+	width: 65px;
+    background-color: #5BB75B;
+    background-image: linear-gradient(to bottom, #62C462, #51A351);
+    background-repeat: repeat-x;
+    border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+    color: #FFFFFF;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+}
+
+.report-btn{position: absolute;right: 9em;top: 3em;width: 80px;}
+

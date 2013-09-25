@@ -1,0 +1,51 @@
+@charset "utf-8";
+/* CSS Document */
+/*--------------------------------------------------------------------------notifications--------*/
+.notifications_box {
+	width: 900px;
+	margin: 10px 40px;
+	background: #afe262;
+	border: solid 5px #3b9805;
+	-moz-border-radius: 19px;
+	-webkit-border-radius: 19px;
+	border-radius: 19px;
+}
+.notifications_box h4 {
+	color: #006633;
+	font-size: 20px;
+	padding-top: 10px;
+	margin: 0;
+}
+.notifications_box img {
+	float: left;
+	margin: 10px;
+}
+.notifications_box .txt {
+	width: 760px;
+	float: right;
+	display: block;
+	margin-left: 0;
+	margin-bottom: 10px;
+	padding: 0;
+}
+.warning {
+	background: #FDFFB3;
+	border: solid 5px #F90;
+}
+.warning h4 {
+	color: #B96C08;
+}
+.error {
+	background: #FFC6C7;
+	border: solid 5px #A12206;
+}
+.error h4 {
+	color: #F00;
+}
+.information {
+	background: #B9F8FF;
+	border: solid 5px #005B93;
+}
+.information h4 {
+	color: #005B93;
+}

@@ -1,0 +1,89 @@
+/*.content_box {
+	margin: 0 auto;
+	width: 100%;
+	color: #1E5B92;
+}.*/
+.help_msg {
+	font-size: 12px;
+	height: 90%;
+	background: #D5DCFF;
+	color: #000033;
+	padding: 10px;
+	margin: 30px auto;
+	border: dashed 0px #000000;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+}
+/*.input {
+	background-color: #fff755;
+	width: 250px;
+	height: 25px;
+	font-size: 14px;
+	margin: 10px auto;
+	padding: 8px;
+	color: #333333;
+	border: dashed 0px #000000;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+}
+.input_questions {
+	width: 880px;
+	background: #cccccc;
+	margin-left: 50px!important;
+}*/
+/*---------------------------------help-hand-button-------------------------------------------*/
+.help_nav {
+	text-align: left;
+	background: url(../img/resource_nav_bg.png);
+	background-repeat: repeat-x;
+	padding: 6px 0 0 15px;
+	height: 65px;
+	display: block;
+}
+a.button_help_nav {
+	float: left;
+	height: 40px;
+	color: #256392;
+	font-size: 16px;
+	background: url(../img/icon-s-all.png);
+	background-position: right -50px;
+	padding-top: 0px;
+	padding-bottom: 0px;
+}
+a.button_help_nav:hover {
+	background: transparent url(../img/icon-s-all.png);
+	background-position: right -250px;
+	height: 40px;
+}
+a.button_help_nav span {
+	height: 40px;
+	padding: 5px 0px 0px 8px;
+	color: #256392;
+	background: transparent url(../img/icon-s-all.png);
+}
+a.button_help_nav:hover span {
+	background-position: left -200px;
+	color: #ffffff;
+}
+.listsub {
+	color: #135a8f;
+	font-size: 12px;
+	font-weight: bold;
+}
+.listword {
+	color: #646464;
+	font-size: 12px;
+	padding-left: 50px;
+}
+.listbar {
+	color: #646464;
+	font-size: 12px;
+	font-weight: bold; font-family: 'Arimo', Verdana, Arial, Helvetica, sans-serif;
+}
+.listbar-a {
+	color: #ff5b00;
+	font-size: 12px;
+	font-weight: bold;
+}
