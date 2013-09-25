@@ -1,0 +1,32 @@
+﻿<div class="resurce_box" onload="MM_preloadImages('img/icon-close.png')">
+    <div class="h3">
+        Disk Save As Template Information <a ng-click="close()" class="btn-close" onmouseout="MM_swapImgRestore()"
+            onmouseover="MM_swapImage('icon_close','','img/icon-close.png',1)">
+            <img src="img/icon-close.png" alt="close" width="22" height="22" id="icon_close"></a></div>
+    <div class="resurce_content">
+        <br />
+        <span tooltip-placement="right" tooltip="Disk Name">Disk Name</span><span class="titid">{{diskName}}</span>
+        <hr />
+        
+        <br />
+        <br />
+        <br />
+        <div>Template infomation</div>
+        <hr />
+        
+        <table width="100%" border="0" cellspacing="0" cellpadding="0" class="boxmenu">
+            <tr>
+                <td colspan="2">
+                    <span tooltip-placement="right" tooltip="Template Name">Template Name</span><span class="titid"></span>
+                </td>
+                <td><input type="text" verifyinput class="input-lightbox" ng-model="template.name" required /></td>
+            </tr>
+        </table>
+
+        <div id="vm-submit-alert">
+            <alert ng-repeat="alert in alerts" type="alert.type" close="closeAlert($index)">{{alert.msg}}</alert>
+        </div>
+        <button type="submit" ng-disabled="!checkForm()" ng-click="submit()" class="button button_approver">
+            Submit</button>        
+    </div>
+</div>

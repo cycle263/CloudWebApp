@@ -1,0 +1,300 @@
+<div id="top" class="container">
+    <div class="header">
+        <div class="people">
+            <div class="img">
+            </div>
+            <div class="slogin">
+            </div>
+            <span>welcome</span><br>
+            <span class="username">{{userInfo.username}}</span>
+            <div class="slogin">
+                <a href="javascript:logout()" title="logout"></a>
+            </div>
+        </div>
+        <div class="logo">
+            <a href="#"></a>
+        </div>
+    </div>
+    <ul class="btn">
+        <li class="request  request-show"><a>REQUEST</a></li>
+        <li class="resource"><a href="#/resource">RESOURCE</a></li>
+        <li class="dashboard"><a href="#/history">HISTORY</a></li>
+        <li class="admin"><a href="#/admin">ADMIN</a></li>
+        <li class="report"><a href="#/report">REPORT</a></li>
+        <li class="help "><a href="#/help">HELP</a></li>
+    </ul>
+    <br clear="all" />
+    <div class="content">
+        <div class="help_nav">
+            <a href="javascript:void(0);" ng-click="locationToCVm()" ng-class="{backImageColor: actions.current=='createVM'}"
+                class="button button_help_nav"><span ng-class="{backImageColorSpan: actions.current=='createVM'}">
+                    <img src="img/icon_btntit-requestCVM.png" width="40" height="32" alt="" align="absmiddle" />Create
+                    vitual Machine</span></a> <a href="javascript:void(0);" ng-click="locationToCDisk()"
+                        ng-class="{backImageColor: actions.current=='createDisk'}" class="button button_help_nav">
+                        <span ng-class="{backImageColorSpan: actions.current=='createDisk'}">
+                            <img src="img/icon_btntit-requestCD.png" width="40" height="32" alt="" align="absmiddle" />Create
+                            Harddisk</span></a> <a href="javascript:void(0);" ng-click="locationToDVM()" ng-class="{backImageColor: actions.current=='deleteVM'}"
+                                class="button button_help_nav"><span ng-class="{backImageColorSpan: actions.current=='deleteVM'}">
+                                    <img src="img/icon_btntit-dvm.png" width="40" height="32" alt="" align="absmiddle" />Delete
+                                    VM Request</span></a>
+                                    <a href="javascript:void(0);" ng-click="locationToEVM()" ng-class="{backImageColor: actions.current=='editVM'}"
+                                class="button button_help_nav"><span ng-class="{backImageColorSpan: actions.current=='editVM'}">
+                                    <img src="img/icon_btntit-dvm.png" width="40" height="32" alt="" align="absmiddle" />Upgrade
+                                    VM Request</span></a>
+        </div>
+        <div ng-switch on="actions.current">
+            <div class="content_box gry_box">
+                <div ng-switch-when="createVM">
+                    <fieldset>
+                        <legend>&nbsp;&nbsp;Basic Information</legend>
+                        <table border="0" cellpadding="5" cellspacing="0">
+                            <tr>
+                                <td width="150" align="right" class="listbar">
+                                    <span tooltip-placement="right" tooltip-html-unsafe="{{tips.VmName}}">VM Name</span>
+                                </td>
+                                <td>
+                                    <input type="text" verifyinput class="input-lightbox" ng-model="request.name" required />
+                                    <alert class="name-warn" ng-repeat="alert in warns" type="alert.type" close="closeWarn($index)">{{alert.msg}}</alert>
+                                </td>                                
+                            </tr>
+                            <tr>
+                                <td align="right" class="listbar">
+                                    Zone / Area
+                                </td>
+                                <td>
+                                    <select ng-model="request.zone" ng-options="zone.Id as zone.Name for zone in zones"
+                                        required class="input-lightbox">
+                                    </select>
+                                </td>
+                            </tr>
+                        </table>
+                    </fieldset>
+                    <fieldset>
+                        <legend>&nbsp;&nbsp;Setting</legend>
+                        <table border="0" cellpadding="5" cellspacing="0">
+                            <tr>
+                                <td width="150" align="right" valign="top" class="listbar">
+                                    <span tooltip-placement="right" tooltip="Our windows template is 40G and centos is 20G ,so if you choose 80G disk size ,you will get 40G C and 40G D partition in windows ,80G in Centos via LVM virtual mount.">
+                                        Operating System</span>
+                                </td>
+                                <td align="left" valign="top">
+                                    <select class="input-lightbox" ng-model="request.osType" ng-options="osType.id as osType.name for osType in osTypes">
+                                    </select>
+                                    <!--<div class="box box-extend" ng-repeat="osType in osTypes">
+                                        <label class="box-label box-label-extend">
+                                            <input class="cdst" selectedboxshadow name="osType" type="radio" ng-model="request.osType"
+                                                value="{{osType.id}}">
+                                                <div ng-class="osType.class">
+                                                </div>
+                                            </input>
+                                        </label>
+                                    </div>-->
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="right" class="listbar listsetting">
+                                    Instance Type
+                                </td>
+                                <td>
+                                    <select ng-change="showInstancePrice()" ng-model="request.vmSettingId" class="input-lightbox" ng-options="computeSetting.id as computeSetting.name for computeSetting in computeSettings">
+                                    </select>
+                                    <!--<div class="box box-extend" ng-repeat="computeSetting in computeSettings">
+                                        <label class="box-label box-label-extend">
+                                            <input class="cdst" selectedboxshadow name="vmsetting" type="radio" ng-model="request.vmSettingId"
+                                                value="{{computeSetting.id}}">
+                                                <div ng-class="computeSetting.class">
+                                                </div>
+                                            </input>
+                                        </label>
+                                    </div>-->
+                                    <span ng-show="instancePrice" class="display-price"><strong>{{instancePrice | currency}} / hr</strong></span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="right" class="listbar listsetting">
+                                    Disk Size
+                                </td>
+                                <td>
+                                    <select ng-change="showDiskPrice()" class="input-lightbox" ng-model="request.diskSettingId" ng-options="diskSize.id as diskSize.name for diskSize in diskSizes">
+                                    </select>
+                                    <input id="diskType" type="checkbox" ng-model="request.enableHA" />
+                                    <label for="diskType">
+                                        <span></span>Enable HA</label>
+                                    <!--<div class="box box-extend" ng-repeat="diskSize in diskSizes">
+                                        <label class="box-label box-label-extend">
+                                            <input class="cdst" name="disksetting" selectedboxshadow type="radio" ng-model="request.diskSettingId"
+                                                value="{{diskSize.id}}">
+                                                <div ng-class="diskSize.class">
+                                                </div>
+                                            </input>
+                                        </label>
+                                    </div>-->
+                                    <span ng-show="diskPrice" class="display-price"><strong>{{diskPrice | currency}} / hr</strong></span>
+                                </td>
+                            </tr>
+                        </table>
+                    </fieldset>
+                </div>
+                <div ng-switch-when="createDisk">
+                    <fieldset>
+                        <legend>&nbsp;&nbsp;Basic Information</legend>
+                        <table border="0" cellpadding="5" cellspacing="0">
+                            <tr>
+                                <td width="150" align="right" class="listbar">
+                                    Disk Name
+                                </td>
+                                <td>
+                                    <input type="text" verifyinput class="input-lightbox" ng-model="request.name" required />
+                                    <alert class="name-warn" ng-repeat="alert in warns" type="alert.type" close="closeWarn($index)">{{alert.msg}}</alert>
+                                </td>                                
+                            </tr>
+                            <tr>
+                                <td align="right" class="listbar">
+                                    Zone / Area
+                                </td>
+                                <td>
+                                    <select class="input-lightbox" ng-model="request.zone" ng-options="zone.Id as zone.Name for zone in zones"
+                                        required>
+                                    </select>
+                                </td>
+                            </tr>
+                        </table>
+                    </fieldset>
+                    <fieldset>
+                        <legend>&nbsp;&nbsp;Setting</legend>
+                        <table border="0" cellpadding="5" cellspacing="0">
+                            <tr>
+                                <td width="150" align="right" class="listbar">
+                                    Disk Size
+                                </td>
+                                <td>
+                                    <select ng-change="showDiskPrice()" class="input-lightbox" ng-model="request.diskSettingId" ng-options="diskSize.id as diskSize.name for diskSize in diskSizes">
+                                    </select>
+                                    
+                                    <!--<div class="box box-extend" ng-repeat="diskSize in diskSizes">
+                                        <label class="box-label box-label-extend">
+                                            <input class="cdst" name="disksetting" selectedboxshadow type="radio" ng-model="request.diskSettingId"
+                                                value="{{diskSize.id}}">
+                                                <div ng-class="diskSize.class">
+                                                </div>
+                                            </input>
+                                        </label>
+                                    </div>-->
+                                    <span ng-show="diskPrice" class="display-price"><strong>{{diskPrice | currency}} / hr</strong></span>
+                                </td>
+                            </tr>
+                        </table>
+                    </fieldset>
+                </div>
+                <div ng-switch-when="deleteVM">
+                    <fieldset>
+                        <legend>&nbsp;&nbsp;Basic Information</legend>
+                        <table border="0" cellpadding="5" cellspacing="0">
+                            <tr>
+                                <td width="150" align="right" class="listbar">
+                                    VM Name
+                                </td>
+                                <td>
+                                    <select class="input-lightbox" ng-model="request.vmId" ng-options="vm.instanceId as vm.displayName for vm in vms"
+                                        required>
+                                    </select>
+                                </td>
+                            </tr>
+                        </table>
+                    </fieldset>
+                </div>
+                <div ng-switch-when="editVM">
+                    <fieldset>
+                        <legend>&nbsp;&nbsp;Basic Information</legend>
+                        <table border="0" cellpadding="5" cellspacing="0">
+                            <tr>
+                                <td width="150" align="right" class="listbar">
+                                    <span tooltip-placement="right" tooltip-html-unsafe="{{tips.VmName}}">VM Name</span>
+                                </td>
+                                <td>
+                                <select ng-change="showVmInstance()" ng-model="editRequest.vmId" class="input-lightbox" ng-options="vm.instanceId as vm.displayName for vm in vms">
+                                    </select>
+                                </td>                                
+                            </tr>
+<!--                            <tr>
+                                <td align="right" class="listbar">
+                                    Current Instance Type
+                                </td>
+                                <td>
+                                    {{editRequest.currentComputerSettings}}
+                                </td>
+                            </tr>-->
+                        </table>
+                    </fieldset>
+                    <fieldset>
+                        <legend>&nbsp;&nbsp;Setting</legend>
+                        <table border="0" cellpadding="5" cellspacing="0">
+                            <tr>
+                                <td  width="150" align="right" class="listbar">
+                                    New Instance Type
+                                </td>
+                                <td>
+                                    <select ng-change="showNewInstancePrice()" ng-model="editRequest.vmSettingId" class="input-lightbox" ng-options="computeSetting.id as computeSetting.name for computeSetting in editComputerSettings">
+                                    </select>
+                                    <span ng-show="newInstancePrice" class="display-price"><strong>{{newInstancePrice | currency}} / hr</strong></span>
+                                </td>
+                            </tr>
+                        </table>
+                    </fieldset>
+                </div>                
+                <fieldset>
+                    <legend>&nbsp;&nbsp;Approval Information</legend>
+                    <table border="0" cellpadding="5" cellspacing="0">
+                        <tr>
+                            <td width="150" align="right" class="listbar" style="vertical-align: top; padding-top: 25px;">
+                                <span tooltip-placement="right" tooltip="Pls select the assigned approver in your dept. Notes :all requst will go through IT admin for approval also.">
+                                    Approve By</span>
+                            </td>
+                            <td>
+                                <select class="input-lightbox" ng-model="request.approver" ng-options="app.approver as app.fullName for app in approvers | orderBy: 'approver'">
+                                </select>
+                                <!--                                <div class="box box-extend2" >
+                                    <label class="box-label box-label-extend2">
+                                        <input class="cdst" name="approver" selectedboxshadow type="radio" 
+                                            value="{{app.approver}}">
+                                            <div>
+                                                <img width="96" height="96" src="http://10.16.83.197/CloudPlatform/docs/helper/Thumbnail.aspx?u={{app.approver}}"
+                                                    title="{{app.fullName}}" /><br />
+                                                <span>{{app.fullName}}</span>
+                                            </div>
+                                        </input>
+                                    </label>
+                                </div>-->
+                            </td>
+                        </tr>
+                        <tr class="chart-config" ng-show="actions.current == 'createVM'">
+                            <td width="150" align="right" class="listbar">Expired By</td>
+                            <td class="date-td"><input style="width:258px" class="date-calendar" type="text" datepicker-popup="yyyy-MM-dd" ng-model="dates.date" open="opened" min="dates.today" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" /></td>
+                        </tr>
+                        <tr>
+                            <td align="right" class="listbar-a" style="vertical-align: top; padding-top: 18px;">
+                                Purpose
+                            </td>
+                            <td>
+                                <textarea class="textarea-lightbox" ng-model="request.purpose" required rows="20"></textarea>
+                            </td>
+                        </tr>
+                    </table>
+                </fieldset>
+            </div>
+            <div id="vm-submit-alert">
+                <alert ng-repeat="alert in alerts" type="alert.type" close="closeAlert($index)">{{alert.msg}}</alert>
+            </div>
+            <button type="submit" ng-disabled="!checkForm()" ng-click="submit()" class="button button_approver">
+                Submit</button>
+        </div>
+    </div>
+    <div class="icon_top">
+        <a ng-click="scrollTo('top')" title="top"></a>
+    </div>
+    <!---container end--->
+</div>
+<div class="footer">
+    Policy &amp; Agreement | Privacy &copy;2000-2013 Newegg lnc. All rights reserved.
+</div>
+<!-- end .container -->

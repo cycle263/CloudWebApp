@@ -1,0 +1,11 @@
+﻿<div class="container">
+  <div class="login_logo" ng-click="clickName();"></div>
+  <form id="login-form">
+     <div id="alertContainer">
+	  	<alert ng-repeat="alert in alerts" type="alert.type" close="closeAlert($index)">{{alert.msg}}</alert>
+	</div>
+   <input type="text" id="name" ng-model="username" class="input login-name" required="" autofocus="" placeholder="Username" />
+    <input type="password" id="pwd" ng-model="password" required="" placeholder="Password" class="input login-pwd"/>
+    <input type="submit" class="login-submit" value="Login ►" ng-click="login();" />
+  </form>      
+</div>

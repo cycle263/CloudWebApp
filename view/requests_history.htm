@@ -1,0 +1,228 @@
+<div id="top" class="container">
+    <div class="header">
+        <div class="people">
+            <div class="img"></div>
+            <div class="slogin"></div>
+            <span>welcome</span><br>
+            <span class="username">{{userInfo.username}}</span>
+            <div class="slogin">
+                <a href="javascript:logout()" title="logout"></a>
+            </div>
+        </div>
+        <div class="logo">
+            <a href="#"></a>
+        </div>
+    </div>
+    <ul class="btn">
+        <li class="request"><a href="#/request">REQUEST</a></li>
+        <li class="resource"><a href="#/resource">RESOURCE</a></li>
+        <li class="dashboard dashboard-show"><a>HISTORY</a></li>
+        <li class="admin"><a href="#/admin">ADMIN</a></li>
+        <li class="report"><a href="#/report">REPORT</a></li>
+        <li class="help"><a href="#/help">HELP</a></li>
+    </ul>
+    <br clear="all" />
+    <div class="content">
+        <div class="resource_nav">
+            <a ng-click="scrollTo('cvm')" class="button button_resource_nav"><span>
+                <img src="img/icon_btntit-rhCVM.png" width="40" height="32" alt="" align="absmiddle" />Create
+                VM</span></a> <a ng-click="scrollTo('chd')" class="button button_resource_nav"><span>
+                    <img src="img/icon_btntit-rhCD.png" width="40" height="32" alt="" align="absmiddle" />Create
+                    Disk</span></a> <a ng-click="scrollTo('dvm')" class="button button_resource_nav"><span>
+                        <img src="img/icon_btntit-rhDVM.png" width="40" height="32" alt="" align="absmiddle" />Delete
+                        VM </span></a>
+                        <a ng-click="scrollTo('evm')" class="button button_resource_nav"><span>
+                        <img src="img/icon_btntit-rhDVM.png" width="40" height="32" alt="" align="absmiddle" />Upgrade
+                        VM </span></a>
+        </div>
+        <h3 id="cvm" class="h3 h3_requestsh">
+            <!-- h3_requests-->
+            <!--Requests History-->
+            Create VM</h3>
+        <div class="contentFilter" style="margin:-38px 250px 28px">
+            <input id="cbApproved" type="checkbox" ng-model="cvmReqFilters[2].checked"/><label for="cbApproved" class="service-status" ><span></span>Approved</label>
+            <input id="cbDenied" type="checkbox" ng-model="cvmReqFilters[3].checked" /><label for="cbDenied" class="service-status" ><span></span>Denied</label>
+            <input id="cbCanceled" type="checkbox" ng-model="cvmReqFilters[4].checked" /><label for="cbCanceled" class="service-status"><span></span>Canceled</label>
+        </div>
+        <img ng-show="loading" class="loading-list" src="img/loading/Loading.gif" />
+        <div id="cvm-container">
+        <div class="yellow_box">
+            <table border="0" cellpadding="0" cellspacing="1" class="yellow_box_list table-striped table-hover">
+                <!--table-striped table-hover-->
+                <tr class="tr-his-req">
+                    <th class="th_bg_lif orderBy" ng-click="cvmFieldName='requestId';cvmReverse=!cvmReverse">Req Id</th>
+                    <th class="th_bg_lif orderBy" ng-click="cvmFieldName='tagName';cvmReverse=!cvmReverse">Name</th>       
+                    <th class="th_bg_lif orderBy" ng-click="cvmFieldName='created';cvmReverse=!cvmReverse">Create Time</th>
+                    <th class="th_bg_lif orderBy" ng-click="cvmFieldName='status';cvmReverse=!cvmReverse">Status</th>
+                    <th class="th_bg_lif orderBy" ng-click="cvmFieldName='depApproveDenyTime';cvmReverse=!cvmReverse">Approve / Deny Time</th>
+                    <th class="th_bg_lif">Purpose</th>
+                    <th class="th_bg_lif">Action</th>
+                </tr>
+                <tr class="tr-his-req" ng-repeat="item in vmItems | orderBy:cvmFieldName:cvmReverse | statusFilter: cvmReqFilters">
+                    <td>{{item.requestId}}</td>
+                    <td>{{item.tagName}}</td>                   
+                    <td>{{item.created | date:'yyyy-MM-dd HH:mm:ss'}}</td>
+                    <td>{{item.status}}</td>
+                    <td>{{item.depApproveDenyTime | date:'yyyy-MM-dd HH:mm:ss'}}</td>
+                    <td width="15%" title="{{item.purpose}}">{{item.purpose}}</td>
+                    <td align="right">
+                        <button ng-click="cancelVMRequest(item.requestId)" ng-show="item.status.startsWith('wait', true)" class="cancel">Cancel</button>
+                        <button ng-click="deleteVMRequest(item.requestId)" ng-show="item.status.startsWith('cancel', true)" class="delete">Delete</button>
+                        <button loadingcontrol vmdetailframe ng-click="viewVMRequest(item.requestId)" class="open">View</button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        </div>
+        <br clear="all">
+        <h3 id="chd" class="h3 h3_requestsh">
+            <!-- h3_requests-->
+            <!--Requests History-->
+            Create Disk</h3>
+        <div class="contentFilter" style="margin: -38px 250px 28px">
+            <input id="cbApproved2" type="checkbox" ng-model="chdReqFilters[1].checked" /><label for="cbApproved2" class="service-status"><span></span>Approved</label>
+            <input id="cbDenied2" type="checkbox" ng-model="chdReqFilters[2].checked" /><label for="cbDenied2" class="service-status"><span></span>Denied</label>
+            <input id="cbCanceled2" type="checkbox" ng-model="chdReqFilters[3].checked" /><label for="cbCanceled2" class="service-status"><span></span>Canceled</label>
+     </div>
+        <img ng-show="loading" class="loading-list" src="img/loading/Loading.gif" />
+        <div id="chd-container">
+        <div class="yellow_box">
+            <table border="0" cellpadding="0" cellspacing="1" class="yellow_box_list table-striped table-hover">
+                <tr class="tr-his-req">
+                    <th class="th_bg_lif orderBy" ng-click="cdiskFieldName='requestId';cdiskReverse=!cdiskReverse">Req Id</th>
+                    <th class="th_bg_lif orderBy" ng-click="cdiskFieldName='name';cdiskReverse=!cdiskReverse">Name</th>          
+                    <th class="th_bg_lif orderBy" ng-click="cdiskFieldName='created';cdiskReverse=!cdiskReverse">Create Time</th>
+                    <th class="th_bg_lif orderBy" ng-click="cdiskFieldName='status';cdiskReverse=!cdiskReverse">Status</th>
+                    <th class="th_bg_lif orderBy" ng-click="cdiskFieldName='approveDenyTime';cdiskReverse=!cdiskReverse">Approve / Deny Time</th>
+                    <th class="th_bg_lif">Purpose</th>
+                    <th class="th_bg_lif">Action</th>
+                </tr>
+                <tr class="tr-his-req" ng-repeat="item in diskItems | orderBy:cdiskFieldName:cdiskReverse | statusFilter: chdReqFilters">
+                    <td>{{item.requestId}}</td>
+                    <td>{{item.name}}</td>                    
+                    <td>{{item.created | date:'yyyy-MM-dd HH:mm:ss'}}</td>
+                    <td>{{item.status}}</td>
+                    <td>{{item.approveDenyTime | date:'yyyy-MM-dd HH:mm:ss'}}</td>
+                    <td title="{{item.purpose}}">{{item.purpose}}</td>
+                    <td align="right">
+                        <button ng-click="cancelDiskRequest(item.requestId,item)" ng-show="item.status.startsWith('wait', true)" class="cancel">Cancel</button>
+                        <button ng-click="deleteDiskRequest(item.requestId,item)" ng-show="item.status.startsWith('cancel', true)" class="delete">Delete</button>
+                        <button loadingcontrol diskdetailframe ng-click="viewDiskRequest(item.requestId)" class="open">View</button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        </div>
+        <br clear="all">
+        <h3 id="dvm" class="h3 h3_requestsh">
+            <!-- h3_requests-->
+            <!--Requests History-->
+            Delete VM</h3>
+        <div class="contentFilter" style="margin:-38px 250px 28px">
+            <input id="cbApproved3" type="checkbox" ng-model="dvmReqFilters[1].checked" /><label for="cbApproved3" class="service-status"><span></span>Approved</label>
+            <input id="cbDenied3" type="checkbox" ng-model="dvmReqFilters[2].checked" /><label for="cbDenied3" class="service-status"><span></span>Denied</label>
+            <input id="cbCanceled3" type="checkbox" ng-model="dvmReqFilters[3].checked" /><label for="cbCanceled3" class="service-status"><span></span>Canceled</label>
+       </div>  
+        <!--<span class="subtit">Delete VM</span>-->
+        <img ng-show="loading" class="loading-list" src="img/loading/Loading.gif" />
+        <div id="dvm-container">
+        <div class="yellow_box">
+            <table border="0" cellpadding="0" cellspacing="1" class="yellow_box_list table-striped table-hover">
+                <tr class="tr-his-req">
+                    <th class="th_bg_lif orderBy" ng-click="dvmFieldName='requestId';dvmReverse=!dvmReverse">Req Id</th>
+                    <th class="th_bg_lif orderBy" ng-click="dvmFieldName='virtualMachine.displayName';dvmReverse=!dvmReverse">Name</th>                 
+                    <th class="th_bg_lif orderBy" ng-click="dvmFieldName='created';dvmReverse=!dvmReverse">Create Time</th>
+                    <th class="th_bg_lif orderBy" ng-click="dvmFieldName='status';dvmReverse=!dvmReverse">Status</th>
+                    <th class="th_bg_lif orderBy" ng-click="dvmFieldName='approveDenyTime';dvmReverse=!dvmReverse">Approve / Deny Time</th>
+                    <th class="th_bg_lif">Purpose</th>
+                    <th class="th_bg_lif">Action</th>
+                </tr>
+                <tr class="tr-his-req" ng-repeat="item in delItems | orderBy:dvmFieldName:dvmReverse | statusFilter: dvmReqFilters">
+                    <td>{{item.requestId}}</td>
+                    <td>{{item.virtualMachine.displayName}}</td>                    
+                    <td>{{item.created | date:'yyyy-MM-dd HH:mm:ss'}}</td>
+                    <td>{{item.status}}</td>
+                    <td>{{item.approveDenyTime | date:'yyyy-MM-dd HH:mm:ss'}}</td>
+                    <td title="{{item.purpose}}">{{item.purpose}}</td>
+                    <td align="right">
+                        <button ng-click="cancelDelVMRequest(item.requestId,item)" ng-show="item.status.startsWith('wait', true)" class="cancel">Cancel</button>
+                        <button ng-click="deleteDelVMRequest(item.requestId,item)" ng-show="item.status.startsWith('cancel', true)" class="delete">Delete</button>
+                        <button loadingcontrol delvmdetailframe ng-click="viewDelVMRequest(item.requestId)" class="open">View</button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+        <br clear="all">
+        <h3 id="evm" class="h3 h3_requestsh">
+            <!-- h3_requests-->
+            <!--Requests History-->
+            Upgrade VM</h3>
+        <div class="contentFilter" style="margin:-38px 250px 28px">
+            <input id="cbApproved4" type="checkbox" ng-model="evmReqFilters[1].checked" /><label for="cbApproved4" class="service-status"><span></span>Approved</label>
+            <input id="cbDenied4" type="checkbox" ng-model="evmReqFilters[2].checked" /><label for="cbDenied4" class="service-status"><span></span>Denied</label>
+            <input id="cbCanceled4" type="checkbox" ng-model="evmReqFilters[3].checked" /><label for="cbCanceled4" class="service-status"><span></span>Canceled</label>
+       </div>  
+        <!--<span class="subtit">Delete VM</span>-->
+        <img ng-show="loading" class="loading-list" src="img/loading/Loading.gif" />
+        <div id="evm-container">
+        <div class="yellow_box">
+            <table border="0" cellpadding="0" cellspacing="1" class="yellow_box_list table-striped table-hover">
+                <tr class="tr-his-req">
+                    <th class="th_bg_lif orderBy" ng-click="evmFieldName='requestId';evmReverse=!evmReverse">Req Id</th>
+                    <th class="th_bg_lif orderBy" ng-click="evmFieldName='vm.displayName';evmReverse=!evmReverse">Name</th>                 
+                    <th class="th_bg_lif orderBy" ng-click="evmFieldName='created';evmReverse=!evmReverse">Create Time</th>
+                    <th class="th_bg_lif orderBy" ng-click="evmFieldName='status';evmReverse=!evmReverse">Status</th>
+                    <th class="th_bg_lif orderBy" ng-click="evmFieldName='approveDenyTime';evmReverse=!evmReverse">Approve / Deny Time</th>
+                    <th class="th_bg_lif">Purpose</th>
+                    <th class="th_bg_lif">Action</th>
+                </tr>
+                <tr class="tr-his-req" ng-repeat="item in editItems | orderBy:evmFieldName:evmReverse | statusFilter: evmReqFilters">
+                    <td>{{item.requestId}}</td>
+                    <td>{{item.vm.displayName}}</td>                    
+                    <td>{{item.created | date:'yyyy-MM-dd HH:mm:ss'}}</td>
+                    <td>{{item.status}}</td>
+                    <td>{{item.depApproveDenyTime | date:'yyyy-MM-dd HH:mm:ss'}}</td>
+                    <td title="{{item.purpose}}">{{item.purpose}}</td>
+                    <td align="right">
+                        <button ng-click="CancelChangeVmReq(item.requestId,item)" ng-show="item.status.startsWith('wait', true)" class="cancel">Cancel</button>
+                        <button ng-click="DeleteChangeVmReq(item.requestId,item)" ng-show="item.status.startsWith('cancel', true)" class="delete">Delete</button>
+                        <button loadingcontrol editvmdetailframe ng-click="viewEditVMRequest(item.requestId)" class="open">View</button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    
+        <br clear="all">
+        <div class="icon_top">
+            <a ng-click="scrollTo('top')" title="top"></a>
+        </div>
+        <ul class="pagination" style="display: none">
+            <li><a href="#">previou</a></li>
+            <li><a href="#">1</a></li>
+            <li><a href="#">2</a></li>
+            <li><a href="#">3</a></li>
+            <li><a href="#">4</a></li>
+            <li><a href="#">5</a></li>
+            <li><a href="#">6</a></li>
+            <li><a href="#">7</a></li>
+            <li><a href="#">next</a></li>
+        </ul>
+        <!---container end--->
+    </div>
+    <div class="footer">
+        Policy &amp; Agreement│Privacy &copy;2000-2013 Newegg lnc.All rights reserved.
+    </div>
+    <!-- end .container -->
+</div>
+
+<div class="ajax_loading"></div>
+
+<div ng-include="'viewDetail/createVmRequest.html'"></div>
+<div ng-include="'viewDetail/createDiskRequest.html'"></div>
+<div ng-include="'viewDetail/createDVmRequest.html'"></div>
+<div ng-include="'viewDetail/createDVmRequest.html'"></div>
+<div ng-include="'viewDetail/updateVmRequest.html'"></div>
+

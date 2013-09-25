@@ -1,0 +1,111 @@
+﻿<div id="top" class="container">
+    <div class="header">
+        <div class="people">
+            <div class="img">
+            </div>
+            <div class="slogin">
+            </div>
+            <span>Welcome</span><br>
+            <span class="username">{{userInfo.username}}</span>
+            <div class="slogin">
+                <a href="javascript:logout()" title="logout"></a>
+            </div>
+        </div>
+        <div class="logo">
+            <span><a href="#"></a>
+        </div>
+    </div>
+    <ul class="btn">
+        <li class="request"><a href="#/request">REQUEST</a></li>
+        <li class="resource resource-show"><a>RESOURCE</a></li>
+        <li class="dashboard"><a href="#/history">HISTORY</a></li>
+        <li class="admin"><a href="#/admin">ADMIN</a></li>
+        <li class="report"><a href="#/report">REPORT</a></li>
+        <li class="help "><a href="#/help">HELP</a></li>
+    </ul>
+    <br clear="all" />
+    <div class="content">
+        <div class="resource_nav">
+            <a ng-click="scrollTo('vm')" class="button button_resource_nav"><span>
+                <img src="img/icon_btntit-vm.png" width="40" height="32" alt="" align="absmiddle" />Virtual
+                Machine</span></a> <a ng-click="scrollTo('hd')" class="button button_resource_nav"><span>
+                    <img src="img/icon_btntit-disk.png" width="40" height="32" alt="" align="absmiddle" />Hard
+                    Disk</span></a> <a ng-click="scrollTo('ss')" class="button button_resource_nav"><span>
+                        <img src="img/icon_btntit-snap.png" width="40" height="32" alt="" align="absmiddle" />Snapshot/Backup
+                    </span></a>
+        </div>
+        <h3 id="vm" class="h3 h3_Virtual">
+            Virtual Machine
+        </h3>
+        <img class="loading-list" ng-show="loadingVM" src="img/loading/Loading.gif" />
+        <button ng-click="refreshVM()" class="refresh">
+            Refresh</button>
+        <div id="vms-container">
+            <div class="box" ng-repeat="machine in machines | orderBy: 'name'">
+                <div class="{{machine.osClass}}" ng-click="handleClickVM(machine)">
+                    <a href="javascript:void(0);"></a>
+                </div>
+                <div class="product_list" title="{{machine.displayName}}" ng-click="handleClickVM(machine)">
+                    <span class="plisttit">{{machine.displayName}}</span><br />
+                </div>
+                <div class="product_list_m">
+                    <span class="plistmid"><span>{{machine.memorySize}}</span> MB / <span>{{machine.cpuNumber}}</span>
+                        CPU</span><br />                        
+                    State：<span ng-class="machine.stateClass()">{{machine.state}}</span>
+                </div>
+            </div>
+        </div>
+        <br clear="all">
+        <h3 id="hd" class="h3 h3_Hard">
+            Hard Disk</h3>
+        <img class="loading-list" ng-show="loadingDisk" src="img/loading/Loading.gif" />
+        <button ng-click="refreshDisk()" class="refresh">
+            Refresh</button>
+        <div id="disks-container">            
+            <div class="box" ng-repeat="disk in disks | orderBy : ['type', 'name']">
+                <div class="product_img hd" ng-click="handleClickDisk(disk)">
+                    <a href="javascript:void(0);"></a>
+                </div>
+                <div class="product_list" title="{{disk.name}}" ng-click="handleClickDisk(disk)">
+                    <span class="plisttit">{{disk.name}}</span><br />
+                </div>
+                <div class="product_list_m">
+                    <span class="plistmid">Disk Size：<span>{{disk.volsize /1024/1024/1024}}</span> GB<br />
+                        Att：<span class="pro_time" title="{{disk.vmName}}">{{disk.vmName}}</span></span><br />
+                        State：<span ng-class="disk.stateClass()">{{disk.state}}</span>
+
+                </div>
+            </div>
+        </div>
+        <br clear="all">
+        <h3 id="ss" class="h3 h3_Snapshot">
+            Clone/Backup</h3>
+        <img class="loading-list" ng-show="loadingSnapshot" src="img/loading/Loading.gif" />
+        <button ng-click="refreshSnapshot()" class="refresh">
+            Refresh</button>
+        <div id="snaps-container">            
+            <div class="box" ng-repeat="snapshot in snapshots | orderBy: 'createTime'">
+                <div class="product_img snapshot" ng-click="handleClickSnapshot(snapshot)">
+                    <a href="javascript:void(0);"></a>
+                </div>
+                <div class="product_list" title="{{snapshot.name}}" ng-click="handleClickSnapshot(snapshot)">
+                    <span class="plisttit pro_time" title="{{snapshot.name}}">{{snapshot.name}}</span><br />
+                </div>
+                <div class="product_list_m">
+                    <span class="plistmid">Created：<br />
+                        <span>{{snapshot.createTime | date:'yyyy-MM-dd HH:mm'}}</span></span>
+                </div>
+            </div>
+        </div>
+        <br clear="all">
+        <div class="icon_top">
+            <a ng-click="scrollTo('top')" title="top"></a>
+        </div>
+        <br clear="all">
+        <!---container end--->
+    </div>
+    <div class="footer">
+        Policy &amp; Agreement│Privacy &copy;2000-2013 Newegg lnc.All rights reserved.
+    </div>
+    <!-- end .container -->
+</div>

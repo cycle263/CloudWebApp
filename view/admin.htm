@@ -1,0 +1,320 @@
+<div id="top" class="container">
+    <div class="header">
+        <div class="people">
+            <div class="img">
+            </div>
+            <div class="slogin">
+            </div>
+            <span>welcome</span><br>
+            <span class="username">{{userInfo.username}}</span>
+            <div class="slogin">
+                <a href="javascript:logout()" title="logout"></a>
+            </div>
+        </div>
+        <div class="logo">
+            <a href="#"></a>
+        </div>
+    </div>
+    <ul class="btn">
+        <li class="request"><a href="#/request">REQUEST</a></li>
+        <li class="resource"><a href="#/resource">RESOURCE</a></li>
+        <li class="dashboard"><a href="#/history">HISTORY</a></li>
+        <li class="admin admin-show"><a>ADMIN</a></li>
+        <li class="report"><a href="#/report">REPORT</a></li>
+        <li class="help "><a href="#/help">HELP</a></li>
+    </ul>
+    <br clear="all" />
+    <div class="content">
+        <div class="resource_nav">
+            <a ng-click="scrollTo('cvm')" class="button button_resource_nav"><span>
+                <img src="img/icon_btntit-adminCVM.png" width="40" height="32" alt="" align="absmiddle" />Create
+                VM</span></a> <a ng-click="scrollTo('chd')" class="button button_resource_nav"><span>
+                    <img src="img/icon_btntit-adminCD.png" width="40" height="32" alt="" align="absmiddle" />Create
+                    Disk</span></a> <a ng-click="scrollTo('dvm')" class="button button_resource_nav"><span>
+                        <img src="img/icon_btntit-adminDVM.png" width="40" height="32" alt="" align="absmiddle" />Delete
+                        VM </span></a>
+                        <a ng-click="scrollTo('evm')" class="button button_resource_nav"><span>
+                        <img src="img/icon_btntit-adminDVM.png" width="40" height="32" alt="" align="absmiddle" />Upgrade
+                        VM </span></a>
+        </div>
+        <h3 id="cvm" class="h3 h3_Admin">
+            Create VM</h3>
+        <img ng-show="loading" class="loading-list" src="img/loading/Loading.gif" />
+        <div id="cvm-container">
+            <div class="yellow_box">
+                <table border="0" cellpadding="0" cellspacing="1" class="yellow_box_list table-striped table-hover">
+                    <tr class="tr-apr-req">
+                        <th class="th_bg_lif orderBy" ng-click="orderById()">
+                            Req Id
+                        </th>
+                        <th class="th_bg_lif orderBy" ng-click="cvmFieldName='tagName';cvmReverse=!cvmReverse">
+                            Name
+                        </th>
+                        <th class="th_bg_lif orderBy" ng-click="cvmFieldName='created';cvmReverse=!cvmReverse">
+                            Create Time
+                        </th>
+                        <th class="th_bg_lif">
+                            Requester
+                        </th>
+                        <th class="th_bg_lif orderBy" ng-click="cvmFieldName='status';cvmReverse=!cvmReverse">
+                            Status
+                        </th>
+                        <th class="th_bg_lif">
+                            Purpose
+                        </th>
+                        <th class="th_bg_lif th_bg_ret">
+                            Action
+                        </th>
+                    </tr>
+                    <tr class="tr-apr-req" ng-repeat="req in vmRequests | orderBy:cvmFieldName:cvmReverse">
+                        <td class="ng-bindingid">
+                            {{req.requestId}}
+                        </td>
+                        <td class="ng-bindingid">
+                            {{req.tagName}}
+                        </td>   
+                        <td class="ng-bindingid">
+                            {{req.created | date: 'yyyy-MM-dd HH:mm:ss'}}
+                        </td>
+                        <td class="ng-bindingid">
+                            {{req.owner}}
+                        </td>
+                        <td class="ng-bindingid">
+                            {{req.status}}
+                        </td>
+                        <td title="{{req.purpose}}" class="ng-bindingid">
+                            {{req.purpose}}
+                        </td>
+                        <td class="ng-bindingid">
+                            <button ng-click="AgreeCVmReq(req.requestId,req.tagName,'',req.networkId,req,req.status,req.zone.id);"
+                                class="cancel">
+                                Approve</button>
+                            <button ng-click="DenyCVmReq(req.requestId,req);" class="delete">
+                                Deny</button>
+                            <button loadingcontrol vmdetailframe ng-click="ViewCVmReq(req.requestId);" class="open">
+                                View</button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <h3 id="chd" class="h3 h3_Admin">
+            Creat Disk</h3>
+        <!--<span class="subtit"></span>-->
+        <img ng-show="loading" class="loading-list" src="img/loading/Loading.gif" />
+        <div id="chd-container">
+            <div class="yellow_box">
+                <table border="0" cellpadding="0" cellspacing="1" class="yellow_box_list table-striped table-hover">
+                    <tr class="tr-apr-req">
+                        <th class="th_bg_lif orderBy" ng-click="cdiskFieldName='requestId';cdiskReverse=!cdiskReverse">
+                            Req Id
+                        </th>
+                        <th class="th_bg_lif orderBy" ng-click="cdiskFieldName='name';cdiskReverse=!cdiskReverse">
+                            Name
+                        </th>
+
+                        <th class="th_bg_lif orderBy" ng-click="cdiskFieldName='created';cdiskReverse=!cdiskReverse">
+                            Create Time
+                        </th>
+                        <th class="th_bg_lif">
+                            Requester
+                        </th>
+                        <th class="th_bg_lif">
+                            Status
+                        </th>
+                        <th class="th_bg_lif">
+                            Purpose
+                        </th>
+                        <th class="th_bg_lif th_bg_ret">
+                            Action
+                        </th>
+                    </tr>
+                    <tr class="tr-apr-req" ng-repeat="req in diskRequests | orderBy:cdiskFieldName:cdiskReverse">
+                        <td class="ng-bindingid">
+                            {{req.requestId}}
+                        </td>
+                        <td class="ng-bindingid">
+                            {{req.name}}
+                        </td>
+
+                        <td class="ng-bindingid">
+                            {{req.created | date: 'yyyy-MM-dd HH:mm:ss'}}
+                        </td>
+                        <td class="ng-bindingid">
+                            {{req.owner}}
+                        </td>
+                        <td class="ng-bindingid">
+                            {{req.status}}
+                        </td>
+                        <td title="{{req.purpose}}" class="ng-bindingid">
+                            {{req.purpose}}
+                        </td>
+                        <td class="ng-bindingid">
+                            <button ng-click="AgreeCDiskReq(req.requestId,req);" class="cancel">
+                                Approve</button>
+                            <button ng-click="DenyCDiskReq(req.requestId,req);" class="delete">
+                                Deny</button>
+                            <button diskdetailframe loadingcontrol ng-click="ViewCDiskReq(req.requestId);" class="open">
+                                View</button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <h3 id="dvm" class="h3 h3_Admin">
+            Delete VM</h3>
+        <!--<span class="subtit"></span>-->
+        <img ng-show="loading" class="loading-list" src="img/loading/Loading.gif" />
+        <div id="dvm-container">
+            <div class="yellow_box">
+                <table border="0" cellpadding="0" cellspacing="1" class="yellow_box_list table-striped table-hover">
+                    <tr class="tr-apr-req">
+                        <th class="th_bg_lif orderBy" ng-click="dvmFieldName='requestId';dvmReverse=!dvmReverse">
+                            Req Id
+                        </th>
+                        <th class="th_bg_lif">
+                            Name
+                        </th>
+
+                        <th class="th_bg_lif orderBy" ng-click="dvmFieldName='created';dvmReverse=!dvmReverse">
+                            Create Time
+                        </th>
+                        <th class="th_bg_lif">
+                            Requester
+                        </th>
+                        <th class="th_bg_lif">
+                            Status
+                        </th>
+                        <th class="th_bg_lif">
+                            Purpose
+                        </th>
+                        <th class="th_bg_lif th_bg_ret">
+                            Action
+                        </th>
+                    </tr>
+                    <tr class="tr-apr-req" ng-repeat="req in delVmRequests | orderBy:dvmFieldName:dvmReverse">
+                        <td class="ng-bindingid">
+                            {{req.requestId}}
+                        </td>
+                        <td class="ng-bindingid">
+                            {{req.virtualMachine.displayName}}
+                        </td>
+                        <td class="ng-bindingid">
+                            {{req.created | date: 'yyyy-MM-dd HH:mm:ss'}}
+                        </td>
+                        <td class="ng-bindingid">
+                            {{req.owner}}
+                        </td>
+                        <td class="ng-bindingid">
+                            {{req.status}}
+                        </td>
+                        <td title="{{req.purpose}}" class="ng-bindingid">
+                            {{req.purpose}}
+                        </td>
+                        <td class="ng-bindingid">
+                            <button ng-click="AgreeDVmReq(req.requestId,req);" class="cancel">
+                                Approve</button>
+                            <button ng-click="DenyDVmReq(req.requestId,req);" class="delete">
+                                Deny</button>
+                            <button delvmdetailframe loadingcontrol ng-click="ViewDVmReq(req.requestId);" class="open">
+                                View</button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        
+        <h3 id="evm" class="h3 h3_Admin">
+            Upgrade VM</h3>
+        <!--<span class="subtit"></span>-->
+        <img ng-show="loading" class="loading-list" src="img/loading/Loading.gif" />
+        <div id="evm-container">
+            <div class="yellow_box">
+                <table border="0" cellpadding="0" cellspacing="1" class="yellow_box_list table-striped table-hover">
+                    <tr class="tr-apr-req">
+                        <th class="th_bg_lif orderBy" ng-click="evmFieldName='requestId';evmReverse=!dvmReverse">
+                            Req Id
+                        </th>
+                        <th class="th_bg_lif">
+                            Name
+                        </th>
+
+                        <th class="th_bg_lif orderBy" ng-click="evmFieldName='created';dvmReverse=!dvmReverse">
+                            Create Time
+                        </th>
+                        <th class="th_bg_lif">
+                            Requester
+                        </th>
+                        <th class="th_bg_lif">
+                            Status
+                        </th>
+                        <th class="th_bg_lif">
+                            Purpose
+                        </th>
+                        <th class="th_bg_lif th_bg_ret">
+                            Action
+                        </th>
+                    </tr>
+                    <tr class="tr-apr-req" ng-repeat="req in editVmRequests | orderBy:evmFieldName:evmReverse">
+                        <td class="ng-bindingid">
+                            {{req.requestId}}
+                        </td>
+                        <td class="ng-bindingid">
+                            {{req.vm.displayName}}
+                        </td>
+                        <td class="ng-bindingid">
+                            {{req.created | date: 'yyyy-MM-dd HH:mm:ss'}}
+                        </td>
+                        <td class="ng-bindingid">
+                            {{req.owner}}
+                        </td>
+                        <td class="ng-bindingid">
+                            {{req.status}}
+                        </td>
+                        <td title="{{req.purpose}}" class="ng-bindingid">
+                            {{req.purpose}}
+                        </td>
+                        <td class="ng-bindingid">
+                            <button ng-click="AgreeUVmReq(req.requestId,req);" class="cancel">
+                                Approve</button>
+                            <button ng-click="DenyUVmReq(req.requestId,req);" class="delete">
+                                Deny</button>
+                            <button editvmdetailframe loadingcontrol ng-click="ViewUVmReq(req.requestId);" class="open">
+                                View</button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+                
+        <br clear="all">
+        <div class="icon_top">
+            <a ng-click="scrollTo('top')" title="top"></a>
+        </div>
+        <ul class="pagination" style="display: none">
+            <li><a href="#">previou</a></li>
+            <li><a href="#">1</a></li>
+            <li><a href="#">2</a></li>
+            <li><a href="#">3</a></li>
+            <li><a href="#">4</a></li>
+            <li><a href="#">5</a></li>
+            <li><a href="#">6</a></li>
+            <li><a href="#">7</a></li>
+            <li><a href="#">next</a></li>
+        </ul>
+        <!---container end--->
+    </div>
+    <div class="footer">
+        Policy &amp; Agreement│Privacy &copy;2000-2013 Newegg lnc.All rights reserved.
+    </div>
+    <!-- end .container -->
+</div>
+<div class="ajax_loading">
+</div>
+<div ng-include="'viewDetail/createVmRequest.html'">
+</div>
+<div ng-include="'viewDetail/createDiskRequest.html'">
+</div>
+<div ng-include="'viewDetail/createDVmRequest.html'">
+</div>
+<div ng-include="'viewDetail/updateVmRequest.html'"></div>

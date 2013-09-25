@@ -1,0 +1,153 @@
+<div id="top" class="container">
+    <div class="header">
+        <div class="people">
+            <div class="img">
+            </div>
+            <div class="slogin">
+            </div>
+            <span>welcome</span><br>
+            <span class="username">{{userInfo.username}}<span>
+            <div class="slogin">
+                <a href="javascript:logout()" title="logout"></a>
+            </div>
+        </div>
+        <div class="logo">
+            <a href="#"></a>
+        </div>
+    </div>
+    <ul class="btn">
+        <li class="request"><a href="#/request">REQUEST</a></li>
+        <li class="resource"><a href="#/resource">RESOURCE</a></li>
+        <li class="dashboard"><a href="#/history">HISTORY</a></li>
+        <li class="admin"><a href="#/admin">ADMIN</a></li>
+        <li class="report"><a href="#/report">REPORT</a></li>
+        <li class="help help-show"><a>HELP</a></li>
+    </ul>
+    <br clear="all" />
+    <div class="content">
+        <div class="help_nav">
+            <a ng-click="scrollTo('help')" class="button button_help_nav"><span><img src="img/icon_btntit-help.png" width="40" height="32" alt="" align="absmiddle"/>Help</span></a>
+            <a ng-click="scrollTo('faq')" class="button button_help_nav"><span><img src="img/icon_btntit-faq.png" width="40" height="32" alt="" align="absmiddle"/>FAQ</span></a></div>
+        <h3 id="help" class="h3 h3_help">
+            Help</h3>
+        <p>
+            <strong>Contact Our Sales Team<br />
+            </strong><span class="listbar">Please fill out the fields below so someone from our Sales Team can get
+            in touch with you. Thank you for considering us.</span></p>
+        <div class="content_box">
+            <table width="881" border="0" cellpadding="5" cellspacing="0">
+                <tr>
+                    <td width="169" align="right" class="listbar">
+                        Your First Name
+                    </td>
+                    <td width="250">
+                        <input type="text" class="input-lightbox" />
+                    </td>
+                    <td width="172" align="right" class="listbar">
+                        &nbsp;Your Last Name
+                    </td>
+                    <td width="250">
+                        <input type="text" class="input-lightbox" />
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right" class="listbar">
+                        Your Phone Number
+                    </td>
+                    <td>
+                        <input type="text" class="input-lightbox" />
+                    </td>
+                    <td align="right" class="listbar">
+                        Your Email Address
+                    </td>
+                    <td>
+                        <input type="text" class="input-lightbox" />
+                    </td>
+                </tr>
+            </table>
+            <span class="listword">Do you have any other questions or comments? Tell us everything you can.</span><br />
+                <textarea rows="20" class="input_questions textarea-lightbox"></textarea>
+            <br />
+            <p>
+                <input type="checkbox" name="checkbox" id="checkbox" class="listword"/>
+                I am an existing customer.
+                <br />
+                <input type="checkbox" name="checkbox2" id="checkbox2" class="listword"/>
+                I would like to receive news and other information from Rackspace.
+                <br />
+            </p>
+            <div class="help_msg listword">
+                May use the information you provide on this form to send to you messages regarding
+                products, services, and promotional offers that may be of interest to you. Information
+                collected from entrants is subject to US Inc.'s Privacy Statement.
+            </div>
+        </div>
+        <h3 id="faq" class="h3 h3_faq">
+            FAQ</h3>
+        <p>
+            <span class="listsub">FAQs</span><br />
+            <span class="listbar">Select from the following list of Product and Technical FAQs. Browse through these
+            FAQs to find answers to commonly raised questions. If you're a new customer of one
+            of the services below, we encourage you to read through the relevant articles.</span></p>
+        <div class="content_box">
+            <table border="0" align="center" cellpadding="5" cellspacing="0">
+                <tr>
+                    <td>
+                        <strong>Compute</strong> ?<br />
+                        EC2 FAQ (also see Technical FAQ)<br />
+                        Elastic MapReduce FAQ ?<br />
+                        Auto Scaling FAQ
+                    </td>
+                    <td>
+                        <p>
+                            <strong>Payments &amp; Billing</strong><br />
+                            AWS Billing FAQ<br />
+                            FPS FAQ<br />
+                            DevPay FAQ</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left">
+                        <strong>Database ?</strong><br />
+                        RDS FAQ<br />
+                        DynamoDB FAQ<br />
+                        Redshift<br />
+                        SimpleDB FAQ<br />
+                        ElastiCache FAQ
+                    </td>
+                    <td>
+                        <p>
+                            <strong>Storage</strong><br />
+                            S3 FAQ (also see Technical FAQ)<br />
+                            Glacier FAQ<br />
+                            EBS FAQ<br />
+                            AWS Import/Export FAQ<br />
+                            AWS Storage Gateway FAQ</p>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <p>&nbsp;
+            
+        </p>
+        <div class="icon_top">
+            <a ng-click="scrollTo('top')" title="top"></a>
+        </div>
+        <ul class="pagination" style="display: none">
+            <li><a href="#">previou</a></li>
+            <li><a href="#">1</a></li>
+            <li><a href="#">2</a></li>
+            <li><a href="#">3</a></li>
+            <li><a href="#">4</a></li>
+            <li><a href="#">5</a></li>
+            <li><a href="#">6</a></li>
+            <li><a href="#">7</a></li>
+            <li><a href="#">next</a></li>
+        </ul>
+        <!---container end--->
+    </div>
+    <div class="footer">
+        Policy &amp; Agreement│Privacy &copy;2000-2013 Newegg lnc.All rights reserved.
+    </div>
+    <!-- end .container -->
+</div>

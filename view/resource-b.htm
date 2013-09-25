@@ -1,0 +1,103 @@
+<div class="resurce_box" onload="MM_preloadImages('img/icon-close.png')">
+    <div class="h3">
+        Hard Disk Information <a ng-click="close()" class="btn-close" onmouseout="MM_swapImgRestore()"
+            onmouseover="MM_swapImage('icon_close','','img/icon-close.png',1)">
+            <img src="img/icon-close.png" alt="close" width="22" height="22" id="icon_close"></a></div>
+    <div class="resurce_content">
+        <table width="100%" border="0" cellspacing="0" cellpadding="0" class="boxmenu">
+            <tr>
+                <td colspan="2">
+                    <span tooltip-placement="right" tooltip="Disk Name">Name</span><span class="titid">{{item.name}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td width="35%">
+                    <img src="img/pic-harddisk_a.png" width="126" height="88" class="product_img">
+                </td>
+                <td width="65%" valign="top">
+                    <div>
+                        <button ng-class="attachClass()" title="AttachTo" ng-click="attachDisk()" ng-disabled="!canAttach()">
+                            &nbsp;<!--Attach--></button>
+                        <button ng-class="detachClass()" title="Detach" ng-click="detachDisk()" ng-disabled="!canDetach()">
+                            &nbsp;<!--Detach--></button>
+                        <span class="mline">&nbsp;</span>
+                        <button ng-class="deleteClass()" title="Delete" ng-click="deleteDisk()" ng-disabled="!canDelete()">
+                            &nbsp;<!--Delete--></button>
+                        <span class="mline">&nbsp;</span>
+                        <button ng-class="backupClass()" title="Snapshot / Backup" ng-click="backupDisk()" ng-disabled="!canBackup()">
+                            &nbsp;<!--Backup--></button><!--<br />-->
+                        <!--<span class="mline">&nbsp;</span>-->
+                        <button ng-class="SaveTemplateClass()" title="Save as Template" ng-click="SaveTemplate()" ng-disabled="!canSaveAs()">
+                            &nbsp;<!--Save as template--></button><br />                            
+                        <alert ng-repeat="alert in alerts" type="alert.type" close="closeAlert($index)">{{alert.msg}}</alert>
+                        <img ng-show="loading" src="img/loading/ajax_loading.gif" />
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                        <tr>
+                            <td width="20%">
+                                <span tooltip-placement="right" tooltip="Display Name">Display Name</span>
+                            </td>
+                            <td width="80%" class="tabqa">
+                                {{item.name}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span tooltip-placement="right" tooltip="Disk storage size">Size</span>
+                            </td>
+                            <td class="tabqa">
+                                {{item.volsize /1024/1024/1024}}<span class="tabqas"> GB</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span tooltip-placement="right" tooltip="Disk Type">Type</span>
+                            </td>
+                            <td class="tabqa">
+                                {{item.type}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span tooltip-placement="right" tooltip="State:attached or detached">State</span>
+                            </td>
+                            <td class="tabqa">
+                                {{item.state}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span tooltip-placement="right" tooltip="Computer Name">Attached to</span>
+                             </td>
+                            <td class="tabqa" ng-switch="canAttach()">
+                                <span ng-switch-when="false">{{item.vmName}}</span>
+                                <select style="width:420px;" ng-switch-when="true" ng-model="item.vmInstanceId" ng-options="machine.instanceId as machine.displayName for machine in machines">
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span tooltip-placement="right" tooltip="Zone">Zone</span>
+                            </td>
+                            <td class="tabqa">
+                                {{item.zone.zoneName}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span tooltip-placement="right" tooltip="the time of disk been created">Created Time</span>
+                            </td>
+                            <td class="tabqa">
+                                {{item.created | date : 'yyyy-MM-dd HH:mm:ss'}}
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>

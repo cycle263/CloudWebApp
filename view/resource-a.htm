@@ -1,0 +1,195 @@
+<div class="resurce_box" onload="MM_preloadImages('img/icon-close.png')">
+    <div class="h3">
+        Virtual Machine Information <a ng-click="close()" class="btn-close" onmouseout="MM_swapImgRestore()"
+            onmouseover="MM_swapImage('icon_close','','img/icon-close.png',1)">
+            <img src="img/icon-close.png" alt="close" width="22" height="22" id="icon_close"></a></div>
+    <div class="resurce_content">
+        <table width="100%" border="0" cellspacing="0" cellpadding="0" class="boxmenu">
+            <tr>
+                <td colspan="2">
+                    <table border="0" cellpadding="0" cellspacing="0">
+                        <tr>
+                            <td>
+                                <span tooltip-placement="right" tooltip="Computer Name">Name</span>
+                            </td>
+                            <td ng-show="!editMode">
+                                <span id="displayName" class="titid">{{item.displayName}}</span>
+                                
+                               
+                            </td>
+                            <td ng-show="!editMode">&nbsp;<!--<button ng-click="showEdit(true)" > class="edit"
+                                    <img src="img/icon-edit.png" />Edit</button>-->
+                                <a href="javascript:void(0)" ng-click="showEdit(true)" class="tipsmag"><img src="img/icon-edit.png" align="absmiddle"/></a></td>
+                            <td ng-show="editMode">
+                                <input type="text" id="editName" ng-model="item.newName" value="{{item.displayName}}" />                                
+                                
+                                
+                                    
+                                
+                            </td>
+                            <td ng-show="editMode">&nbsp;<!--<button ng-click="editDisplayName()" > class="cancel"
+                                    <img src="img/icon-ok.png" />OK</button>-->
+                                <a href="javascript:void(0)" ng-click="renameVM()" class="tipsmag"><img src="img/icon-ok.png" align="absmiddle" /></a></td>
+                            <td ng-show="editMode">&nbsp;<!--<button ng-click="showEdit(false)" >class="cancel"
+                                    <img src="img/icon-cancel.png" />Cancel</button>-->
+                                <a href="javascript:void(0)" ng-click="showEdit(false)" class="tipsmag"><img src="img/icon-cancel.png" align="absmiddle"/></a></td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td width="35%">
+                    <img ng-src="{{osLogo}}" width="126" height="88" class="product_img">
+                </td>
+                <td width="65%" valign="top">
+                    <div>
+                        <button ng-class="startClass()" title="Start" ng-click="startVM()" ng-disabled="!canStart()">
+                            &nbsp;<!--Start--></button>
+                        <button ng-class="stopClass()" title="Stop" ng-click="stopVM()" ng-disabled="!canStop()">
+                            &nbsp;<!--Ready--></button>
+                        <button ng-class="rebootClass()" title="Reboot" ng-click="rebootVM()" ng-disabled="!canReboot()">
+                            &nbsp;<!--Restart--></button>
+                        <span class="mline">&nbsp;</span>
+                        <button ng-class="backupClass()" title="Snapshot / Backup" ng-click="backupVM()" ng-disabled="!canBackup()">
+                            &nbsp;<!--Backup--></button>
+                        <span class="mline">&nbsp;</span>
+                        <button ng-class="connectClass()" title="Connect to Console" ng-click="connectVM()" ng-disabled="!canConnect()">
+                            &nbsp;<!--Connect--></button><br />
+                        <button ng-class="attachClass()" title="Attach Iso" ng-click="attachIso()" ng-disabled="!canAttach()">
+                            &nbsp;<!--Attach--></button>
+                        <button ng-class="detachClass()" title="Detach Iso" ng-click="detachIso()" ng-disabled="!canDetach()">
+                            &nbsp;<!--Detach--></button>
+                        <span class="mline">&nbsp;</span>
+                        <button ng-class="deleteClass()" title="Delete" ng-click="deleteVM()" ng-disabled="!canDelete()">
+                            &nbsp;<!--Delete--></button>
+                        <br />
+                        <alert ng-repeat="alert in alerts" type="alert.type" close="closeAlert($index)">{{alert.msg}}</alert>
+                        <img ng-show="loading" src="img/loading/ajax_loading.gif" />
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                        <tr>
+                            <td width="20%">
+                                <span tooltip-placement="right" tooltip="Domain Name">Domain Name</span>
+                            </td>
+                            <td width="80%" class="tabqa">
+                                {{item.domain}} \ {{item.hostName}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span tooltip-placement="right" tooltip="Process Unit">Process Unit</span>
+                            </td>
+                            <td class="tabqa">
+                                {{item.cpuSpeed}}<span class="tabqas"> MHz * </span>{{item.cpuNumber}}<span class="tabqas">
+                                    Unit</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span tooltip-placement="right" tooltip="Memory Size">Memory Size</span>
+                            </td>
+                            <td class="tabqa">
+                                {{item.memorySize}}<span class="tabqas"> MB</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span tooltip-placement="right" tooltip="State">State</span>
+                            </td>
+                            <td ng-class="item.stateClass()">
+                                {{item.state}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span tooltip-placement="right" tooltip="Os Name">Os Name</span>
+                            </td>
+                            <td class="tabqa">
+                                {{item.imageName}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span tooltip-placement="right" tooltip="Disk List">Disk List</span>
+                            </td>
+                            <td class="tabqa">
+                                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                    <tr>
+                                        <th>
+                                            Name
+                                        </th>
+                                        <th>
+                                            Type
+                                        </th>
+                                        <th>
+                                            Size
+                                        </th>
+                                    </tr>
+                                    <tr ng-repeat="disk in item.disks">
+                                        <td>
+                                            {{disk.name}}
+                                        </td>
+                                        <td>
+                                            {{disk.type}}
+                                        </td>
+                                        <td>
+                                            {{disk.volsize /1024/1024/1024}} GB
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span tooltip-placement="right" tooltip="Attached ISO">Attached ISO</span>
+                            </td>
+                            <td class="tabqa" ng-switch="canAttach()">
+                                <span ng-switch-when="false">{{item.imageFile.description}}</span>
+                                <select style="width:420px;" ng-switch-when="true" ng-model="item.imageFile.id" ng-options="file.id as file.name for file in imageFiles | orderBy:'name'" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span tooltip-placement="right" tooltip="Nic List">Nic List</span>
+                            </td>
+                            <td class="tabqa">
+                                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                    <tr>
+                                        <th>
+                                            IP Address
+                                        </th>
+                                    </tr>
+                                    <tr ng-repeat="nic in item.nics">
+                                        <td>
+                                            {{nic.ipaddress}}
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span tooltip-placement="right" tooltip="Zone">Zone</span>
+                            </td>
+                            <td class="tabqa">
+                                {{item.zone.zoneName}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span tooltip-placement="right" tooltip="Created Time">Created Time</span>
+                            </td>
+                            <td class="tabqa">
+                                {{item.created | date : 'yyyy-MM-dd HH:mm:ss'}}
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>

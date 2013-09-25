@@ -1,0 +1,75 @@
+<div id="top" class="container">
+    <div class="header">
+        <div class="people">
+            <div class="img">
+            </div>
+            <div class="slogin">
+            </div>
+            <span>welcome</span><br>
+            <span class="username">{{userInfo.username}}</span>
+            <div class="slogin">
+                <a href="javascript:logout()" title="logout"></a>
+            </div>
+        </div>
+        <div class="logo">
+            <a href="#"></a>
+        </div>
+    </div>
+    <ul class="btn">
+        <li class="request"><a href="#/request">REQUEST</a></li>
+        <li class="resource"><a href="#/resource">RESOURCE</a></li>
+        <li class="dashboard"><a href="#/history">HISTORY</a></li>
+        <li class="admin"><a href="#/admin">ADMIN</a></li>
+        <li class="report report-show"><a>REPORT</a></li>
+        <li class="help "><a href="#/help">HELP</a></li>
+    </ul>
+    <br clear="all" />
+    <div class="content">
+        <div class="resource_nav">
+            <a ng-click="scrollTo('vm')" class="button button_resource_nav"><span>
+                <img src="img/icon_btntit-report.png" width="40" height="32" alt="" align="absmiddle" />Report</span></a>
+        </div>
+        <h3 class="h3 h3_report">
+            Report/My Droplets</h3>
+
+        <div class="chart-config">
+            <label class="control-label" for="chartType">Chart type
+            <select id="chartType" ng-model="chart.type" ng-change="selectionChange()">
+                <option value="AreaChart">AreaChart</option>
+                <option value="PieChart">PieChart</option>
+                <option value="ColumnChart">ColumnChart</option>
+                <option value="Table">Table</option>
+                <option value="BarChart">BarChart</option>
+            </select></label>
+            <label class="control-label" for="productType">Product type
+            <select id="productType" ng-model="query.type">
+                <option>All</option>
+                <option>VM</option>
+                <option>Disk</option>
+                <option>Snapshot</option>
+            </select> </label><br />
+            <label class="control-label">Date Start
+            <input class="date-calendar" type="text" datepicker-popup="yyyy-MM-dd" ng-model="dates.dts" open="opened1" min="'2013-01-01'" ng-change="startDateChange()" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" />  
+            </label>    
+            <label class="control-label">Date End
+            <input class="date-calendar date-end" type="text" datepicker-popup="yyyy-MM-dd" ng-model="dates.dte" open="opened2" min="dates.dts" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" /> 
+            </label>  
+            <button class="report-btn open" ng-click="queryReportData()">Query</button>
+            <!-- <label class="control-label" for="chartSelected">Hide Server</label>
+            <input id="chartSelected" type="checkbox" ng-model="hideServer" ng-change="selectionChange()" /> -->
+        </div>
+        <div class="yellow_box">
+            <img ng-show="loading" class="loading-list" src="img/loading/Loading.gif" />
+            <div google-chart chart="chart" style="{{chart.cssStyle}}"></div>
+        </div>
+        <br clear="all">
+        <div class="icon_top">
+            <a ng-click="scrollTo('top')" title="top"></a>
+        </div>
+        <!---container end--->
+    </div>
+    <div class="footer">
+        Policy &amp; Agreement│Privacy &copy;2000-2013 Newegg lnc.All rights reserved.
+    </div>
+    <!-- end .container -->
+</div>

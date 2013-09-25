@@ -1,0 +1,96 @@
+<div class="resurce_box" onload="MM_preloadImages('img/icon-close.png')">
+  <div class="h3">Snapshot Information <a ng-click="close()" class="btn-close" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('icon_close','','img/icon-close.png',1)"><img src="img/icon-close.png" alt="close" width="22" height="22" id="icon_close"></a></div>
+    <div class="resurce_content">
+        <table width="100%" border="0" cellspacing="0" cellpadding="0" class="boxmenu">
+            <tr>
+                <td colspan="2">
+                    <span tooltip-placement="right" tooltip="the snapshot name">Name</span><span class="titid">{{item.name}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td width="35%">
+                    <img src="img/pic-backup_a.png" width="126" height="88" class="product_img">
+                </td>
+                <td width="65%" valign="top">
+                    <div>
+                        <button ng-class="restoreClass" title="Restore" ng-click="restoreSS()" ng-disabled="!canRestore">
+                            &nbsp;<!--Restore--></button>
+                        <span class="mline">&nbsp;</span>
+                        <button class="boxicon btn-delete" title="Delete" ng-click="deleteSS()">&nbsp;<!--Delete--></button>
+                        <alert ng-repeat="alert in alerts" type="alert.type" close="closeAlert($index)">{{alert.msg}}</alert>
+                   </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                        <tr>
+                            <td width="20%">
+                                <span tooltip-placement="right" tooltip="Display Name">Display Name</span>
+                            </td>
+                            <td width="80%" class="tabqa">
+                                {{item.name}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span tooltip-placement="right" tooltip="Machine Name">Machine Name</span>
+                            </td>
+                            <td class="tabqa">
+                                {{item.name.substring(0, item.name.indexOf('_', 0))}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span tooltip-placement="right" tooltip="Disk Name">Disk Name</span>
+                            </td>
+                            <td class="tabqa">
+                                {{item.vmDiskName}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span tooltip-placement="right" tooltip="Size">Size</span>
+                            </td>
+                            <td class="tabqa">
+                                {{item.volsize /1024/1024/1024}}<span class="tabqas"> GB</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span tooltip-placement="right" tooltip="Type">Type</span>
+                            </td>
+                            <td class="tabqa">
+                              {{item.type}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span tooltip-placement="right" tooltip="State">State</span>
+                            </td>
+                            <td class="tabqa">
+                                {{item.state}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span tooltip-placement="right" tooltip="Zone">Zone</span>
+                            </td>
+                            <td class="tabqa">
+                                2
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span tooltip-placement="right" tooltip="the time of snapshot been created">Created Time</span>
+                            </td>
+                            <td class="tabqa">
+                                {{item.createTime | date: 'yyyy-MM-dd HH:mm:ss'}}
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
